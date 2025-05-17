@@ -2,35 +2,68 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Asystent AI do Biblii</title>
+  <title>AI Biblijny Asystent</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding: 50px;
+      background-color: #f0f8ff;
+    }
+    h1 {
+      color: #333;
+    }
+    textarea {
+      font-size: 16px;
+      width: 80%;
+      max-width: 600px;
+      height: 150px;
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #response {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-top: 20px;
+      width: 80%;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #fff;
+    }
+  </style>
 </head>
-<body style="text-align:center; font-family:Arial; padding:50px;">
+<body>
   <h1>AI Biblijny Asystent</h1>
-  <textarea id="prompt" rows="6" cols="60" placeholder="Wpisz temat lub pytanie biblijne..."></textarea><br><br>
+  <textarea id="prompt" placeholder="Wpisz pytanie biblijne..."></textarea><br><br>
   <button onclick="askAI()">Zapytaj AI</button>
   <h2>Odpowiedź:</h2>
-  <div id="response" style="border:1px solid #ccc; padding:20px; margin-top:20px;"></div>
+  <div id="response">Odpowiedź pojawi się tutaj...</div>
 
   <script>
     async function askAI() {
       const prompt = document.getElementById('prompt').value;
       document.getElementById('response').innerText = 'Czekaj...';
 
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      const response = await fetch('https://0f39eaff-3768-4885-9f7e-4ef55e93f7b3-00-2r9gdxap0m38n.riker.replit.dev/ask', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
-        },
-        body: JSON.stringify({
-          model: 'gpt-4o',
-          messages: [{ role: 'user', content: prompt }],
-          max_tokens: 800
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: prompt })
       });
 
       const data = await response.json();
-      document.getElementById('response').innerText = data.choices[0].message.content;
+      document.getElementById('response').innerText = data.reply;
     }
   </script>
 </body>
