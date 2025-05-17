@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test JavaScript na GitHub Pages</title>
+</head>
+<body>
+  <h1>Witaj na mojej stronie z GitHub Pages</h1>
+  <button onclick="kliknijMnie()">Kliknij mnie</button>
+  <p id="licznik">Kliknięto 0 razy.</p>
+
+  <script>
+    let licznik = 0;
+    function kliknijMnie() {
+      licznik++;
+      document.getElementById("licznik").innerText = `Kliknięto ${licznik} razy.`;
+    }
+  </script>
+</body>
+</html>
